@@ -1,0 +1,115 @@
+{
+  "project_name": "NEXCARE",
+  "theme_archetype": {
+    "type": "Hybrid: Archetype 1 (Organic & Earthy) + Archetype 4 (Swiss & High-Contrast)",
+    "description": "Blends the clinical trust and warmth of healthcare (green/blue tones) with the architectural precision of hospital planning (sharp grids, structural typography)."
+  },
+  "typography": {
+    "headings": {
+      "family": "Outfit",
+      "weights": ["400", "700", "900"],
+      "usage": "Authoritative, modern, slightly architectural. Used for all H1-H4."
+    },
+    "body": {
+      "family": "DM Sans",
+      "weights": ["400", "500", "700"],
+      "usage": "Clean, highly readable sans-serif for long-form text and UI labels."
+    }
+  },
+  "colors": {
+    "light": {
+      "background": "#F8FAF9",
+      "surface": "#FFFFFF",
+      "primary": "#0E4A8A",
+      "secondary": "#3FB549",
+      "accent": "#F0F5F1",
+      "text_main": "#0A0F14",
+      "text_muted": "#4A5568",
+      "border": "#E2E8F0",
+      "glow": "rgba(14,74,138,0.15)"
+    },
+    "dark": {
+      "background": "#080C11",
+      "surface": "#121820",
+      "primary": "#4A90E2",
+      "secondary": "#4CAF50",
+      "accent": "#1A2530",
+      "text_main": "#F8FAF9",
+      "text_muted": "#A0AEC0",
+      "border": "#2D3748",
+      "glow": "rgba(74,144,226,0.25)"
+    }
+  },
+  "ui_ux_patterns": {
+    "layout": "Bento grids for services and projects. Generous padding (py-24 for sections). Sharp or 4px rounded corners (no pill-shaped cards) to maintain architectural feel.",
+    "glowing_light": "Subtle, large blurred radial gradients behind hero and key call-to-actions, adapting to light/dark mode (e.g., medical blue glow in dark mode).",
+    "animation": "Framer Motion for entrance staggering. 'Reel-style' horizontal scroll for the Projects/Portfolio section using framer-motion useScroll.",
+    "3d_hero": "Implement subtle 3D floating particles or an architectural wireframe globe in the hero section based on the provided three.js HTML reference."
+  },
+  "pages_blueprint": [
+    {
+      "name": "Home",
+      "sections": ["Hero with 3D animation, glowing text, CTA", "Services Bento Grid", "Reel-style Projects Showcase", "Trust/Stats", "Chatbot Widget"]
+    },
+    {
+      "name": "Services",
+      "sections": ["Header", "Hospital Planning", "Healthcare Consulting", "Design Architecture", "Brochure Download CTA"]
+    },
+    {
+      "name": "About",
+      "sections": ["Hero", "Company History", "Leadership Team", "Timeline"]
+    },
+    {
+      "name": "Our Vision",
+      "sections": ["Mission Statement", "Future of Healthcare Design", "Sustainability"]
+    },
+    {
+      "name": "Projects",
+      "sections": ["Filterable Portfolio Grid", "Case Studies (HD imagery of blueprints and finished hospitals)"]
+    },
+    {
+      "name": "Blog",
+      "sections": ["Featured Post", "Grid of Insights (Healthcare trends, architecture)"]
+    },
+    {
+      "name": "Career",
+      "sections": ["Culture Image Gallery", "Open Positions List", "Benefits"]
+    },
+    {
+      "name": "Contact",
+      "sections": ["Contact Form (POST to backend)", "Map/Locations", "Brochure Download CTA"]
+    },
+    {
+      "name": "Admin",
+      "sections": ["Login Auth", "Dashboard Table (View contact submissions)"]
+    }
+  ],
+  "media_urls": {
+    "hero_architecture": [
+      "https://images.pexels.com/photos/20242798/pexels-photo-20242798.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.pexels.com/photos/668300/pexels-photo-668300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
+    "projects_blueprints": [
+      "https://images.unsplash.com/photo-1721244654346-9be0c0129e36",
+      "https://images.pexels.com/photos/4458205/pexels-photo-4458205.jpeg",
+      "https://images.pexels.com/photos/6615086/pexels-photo-6615086.jpeg"
+    ],
+    "consulting_team": [
+      "https://images.pexels.com/photos/7108401/pexels-photo-7108401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.pexels.com/photos/5452285/pexels-photo-5452285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ]
+  },
+  "tech_stack_guidelines": {
+    "frontend": "React.js, Tailwind CSS, Shadcn UI, Framer Motion, Three.js (for hero), React Router DOM",
+    "backend": "Node.js/Express or Next.js API Routes (depending on setup), MongoDB for contact form, Resend API for emails",
+    "testing": "All interactive elements must have data-testid attributes (e.g., data-testid='contact-submit-btn')"
+  },
+  "instructions_to_main_agent": [
+    "Ensure dark mode works seamlessly; toggle should swap CSS variables for background, surface, text, primary, and secondary colors.",
+    "Do NOT use generic medical templates. Apply strict grid layouts (Bento) and sharp borders to evoke architectural precision.",
+    "Include the glowing light effect behind the Hero text using Tailwind blur (e.g., bg-primary/20 blur-3xl).",
+    "Implement horizontal scroll (reel-style) for the Projects section.",
+    "Integrate a rule-based floating FAQ chatbot widget.",
+    "Build a secure Admin page to view MongoDB contact submissions."
+  ]
+}

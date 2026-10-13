@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="15" time="1.831" timestamp="2026-10-10T19:00:16.715852+00:00" hostname="agent-env-99219848-4f1f-45dc-b979-7b2bb7a0a380"><testcase classname="" name="tests.backend_test" time="0.000"><error message="collection failure">backend/tests/backend_test.py:14: in &lt;module&gt;
+    BASE = os.environ["REACT_APP_BACKEND_URL"].rstrip("/")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen os&gt;:679: in __getitem__
+    ???
+E   KeyError: 'REACT_APP_BACKEND_URL'</error><error message="collection failure">backend/tests/backend_test.py:14: in &lt;module&gt;
+    BASE = os.environ["REACT_APP_BACKEND_URL"].rstrip("/")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen os&gt;:679: in __getitem__
+    ???
+E   KeyError: 'REACT_APP_BACKEND_URL'</error></testcase><testcase classname="tests.test_validation" name="test_valid_contact_normalises_email" time="0.001" /><testcase classname="tests.test_validation" name="test_invalid_contact[name-J0hn]" time="0.001" /><testcase classname="tests.test_validation" name="test_invalid_contact[name-a]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[name-John@]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[phone-98765]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[phone-98765abcde]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[email-bad]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[service-Not a service]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[message-   ]" time="0.000" /><testcase classname="tests.test_validation" name="test_invalid_contact[message-!!]" time="0.000" /><testcase classname="tests.test_validation" name="test_unicode_names_allowed" time="0.000" /><testcase classname="tests.test_validation" name="test_formula_injection_escaped" time="0.000" /><testcase classname="tests.test_validation" name="test_confirmation_event_shape" time="0.001" /></testsuite></testsuites>

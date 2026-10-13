@@ -1,0 +1,60 @@
+{
+  "summary": "First end-to-end review of Nexcare website. Backend: 27/27 pytest tests pass (contact validation + rate-limit, assessment start/complete/409/404, admin login/CSRF/analytics/CRUD/export/lockout/logout, health, brochure static). Frontend: all 14 tested public routes load (home, services, each service slug, about, /vision -> /about#vision redirect, projects, blog + article, career, contact, assessment, privacy, sitemap, 404). Theme toggle swaps logo (/images/logo-dark.webp <-> /logo.png). 10 service cards present in correct order, Explore All Services link present. Breadcrumbs + inquiry CTA on detail pages. Testimonials carousel (prev/next/pause/dots), FAQ accordion, chatbot (services option, exit flow + restart), cookie banner (accept/decline/customize/save/privacy-link/footer-reopen), brochure download links (hero/footer with download attr) all work. Admin dashboard: wrong password shows error, login success loads tabs (overview/contacts/assessments/audit), analytics renders, logout returns to login + /api/admin/me 401. No horizontal overflow at 390px on home/services/about/blog/contact/admin. Password hash in Mongo starts with $2b$. Admin password NOT present in frontend bundle. ONE CRITICAL ISSUE: Google reCAPTCHA v2 widget renders 'ERROR for site owner: Invalid site key' on preview domain -> no checkbox is visible, user cannot complete UI contact or assessment submissions. Backend captcha_token verification still works (accepts any non-empty token per test config) and backend end-to-end flows pass.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Recaptcha",
+        "issue": "Widget shows 'ERROR for site owner: Invalid site key' on https://blissful-hermann-13.preview.emergentagent.com - no checkbox rendered, so contact form and assessment info-form cannot be completed by a real user. Site key REACT_APP_RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcwGfZ4v3d6XjyPjD_7ArN6X1VT is the documented Google v2 test key, but Google's widget rejects it on this host. Likely Google tightened/removed implicit domain allowlist for that pair, or the key needs regeneration. Backend accepts any non-empty captcha_token so the server flow is unaffected.",
+        "selector": "[data-testid=captcha]",
+        "priority": "CRITICAL"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "mobile 390px home with cookie banner open",
+        "issues": [
+          "floating-controls bottom edge touches cookie banner top edge (y=576 both). Visually acceptable (no visible overlap) but very tight; consider adding ~12px gap when banner is open."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/backend/tests/test_validation.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "FIX reCAPTCHA site key - either regenerate a fresh v2 test/live key pair in Google reCAPTCHA admin console and update REACT_APP_RECAPTCHA_SITE_KEY and backend RECAPTCHA_SECRET_KEY, OR add an explicit DEV_BYPASS flag that renders a fake checkbox when NODE_ENV!=production. Without this, contact form and assessment completion cannot be exercised through the UI on the preview URL.",
+    "Minor: suppress the React dev warning 'Invalid DOM property fetchpriority. Did you mean fetchPriority?' (likely from an img attribute). Non-blocking.",
+    "Minor: on mobile <=390px, when cookie banner is visible, raise the floating controls (chatbot + back-to-top) by ~12px so they sit cleanly above the banner."
+  ],
+  "critical_code_review_comments": [
+    "backend/server.py and admin_routes.py are well-structured and small. All MongoDB reads already exclude _id via HIDDEN projection. Good.",
+    "auth.py uses bcrypt $2b$ with cost 12 and sets httpOnly, Secure, SameSite=strict cookie scoped to /api, 8h expiry - correct.",
+    "CSRF guard via X-Requested-With header is enforced on POST/PATCH/PUT/DELETE under /api/admin - verified by test_admin_csrf_required (403 without header).",
+    "Brute-force lockout after 5 failures per (ip,username) with 15 min window - verified.",
+    "ADMIN_PASSWORD contains special chars '(@)' - stored directly as plaintext in backend/.env; seed_admin bcrypt-hashes it on startup. OK, but recommend using ADMIN_PASSWORD_HASH in production env.",
+    "Rate limiter is in-memory per process -> horizontal scaling will break per-IP limits (contact 5/10min, login 10/5min). Document this or move to Redis.",
+    "Recaptcha.jsx: no graceful degradation when Google widget errors. Consider rendering a visible warning banner so users know why submit button is disabled.",
+    "Contact form 'Service' is a native <select> (not shadcn) - works fine with keyboard, no visual issue.",
+    "Spec says REACT_APP_BACKEND_URL used only - verified; no hardcoded URLs found in frontend sources."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "~92% (blocked only by reCAPTCHA widget error on preview)"
+  },
+  "test_credentials": "REDACTED - supply TEST_ADMIN_USERNAME / TEST_ADMIN_PASSWORD via environment variables.",
+  "seed_data_creation": "All transient test contacts/assessments created by tests are deleted by the tests themselves via admin DELETE (verified).",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend is fully exercised in /app/backend/tests/backend_test.py and test_validation.py (27 tests, 100% pass). The only remaining blocker for UI end-to-end is the Google reCAPTCHA 'Invalid site key' error on the preview URL - once main agent fixes the key or adds a dev bypass, retest: (1) submit contact form end-to-end (name 'Test Automation', email test.automation+<rand>@example.com, phone 9876543210, service 'Healthcare Consulting', message, tick captcha, expect contact-success + contact-email-pending), (2) complete assessment flow Q1-5 + info form + Q6-10 + quiz-result + verify saved in admin assessments tab, (3) admin record-dialog -> record-save status/notes -> record-delete-confirm -> contacts-export xlsx. All testids exist and are correct. Rate limiter is per-process in-memory; restart backend between back-to-back submission runs. Cookie banner has data-testid cookie-decline/cookie-accept/cookie-customize/cookie-analytics-toggle/cookie-save/cookie-privacy-link and floating-controls has data-testid floating-controls.",
+  "rca of the issue": "reCAPTCHA 'Invalid site key' — the configured key REACT_APP_RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcwGfZ4v3d6XjyPjD_7ArN6X1VT is historically Google's documented v2 test key. The script URL in the browser confirms the exact key is being sent (https://www.google.com/recaptcha/api2/anchor?...&k=6LeIxAcT...X1VT&...). Google's anchor frame renders the 'ERROR for site owner: Invalid site key' message meaning Google itself rejected the key for this hostname (blissful-hermann-13.preview.emergentagent.com). Reproduction: open /contact in the preview URL, scroll to Human Verification - you'll see the error overlay instead of a checkbox. Mitigation: (a) create a fresh v2 Checkbox key in https://www.google.com/recaptcha/admin without domain restrictions (or add the preview host) and update both REACT_APP_RECAPTCHA_SITE_KEY (frontend/.env) and RECAPTCHA_SECRET_KEY (backend/.env), then restart frontend+backend; or (b) implement a dev bypass that skips rendering the widget when hostname matches preview and feeds the backend a static non-empty token (backend already accepts any non-empty token in test mode). Backend submission path has been proven to work end-to-end via pytest."
+}
