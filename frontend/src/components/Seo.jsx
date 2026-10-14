@@ -1,5 +1,5 @@
 export const SITE_URL = (process.env.REACT_APP_SITE_URL || "").replace(/\/+$/, "");
-const DEFAULT_IMG = "/images/hero-hospital-planning.webp";
+const DEFAULT_IMG = "/images/Nexcare Healthcare Consulting.webp";
 
 export const Seo = ({ title, description, path = "/", image = DEFAULT_IMG, type = "website", noindex = false, jsonLd, keywords }) => {
   const url = `${SITE_URL}${path}`;

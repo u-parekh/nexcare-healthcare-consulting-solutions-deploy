@@ -10,7 +10,7 @@ export const HeroCenterpiece = () => {
   return (
     <div className="relative mx-auto w-[min(100%,20rem)] sm:w-full sm:max-w-md aspect-square" data-testid="hero-centerpiece">
       <div className="absolute inset-[12%] rounded-full overflow-hidden border border-border shadow-2xl">
-        <img src="/images/hero-hospital-planning.webp" alt="Hospital planner drawing a healthcare facility floor plan"
+        <img src="/images/hero-hospital-planning.webp" alt="NEXCARE Healthcare Consulting"
           width="1050" height="1400" fetchPriority="high" className="w-full h-full object-cover opacity-35 dark:opacity-25" />
         <div className="absolute inset-0 bg-[radial-gradient(circle,hsl(var(--background)/0.2),hsl(var(--background)/0.85)_70%)]" />
       </div>
