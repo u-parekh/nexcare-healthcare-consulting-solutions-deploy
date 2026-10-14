@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -48,6 +49,7 @@ function App() {
             </Routes>
           </BrowserRouter>
           <Toaster richColors position="top-right" />
+          <Analytics />
         </div>
       </MotionConfig>
     </ThemeProvider>
