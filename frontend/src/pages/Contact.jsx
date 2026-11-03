@@ -19,15 +19,9 @@ const validate = (form) => {
 };
 
 const Success = ({ result, onReset }) => (
-<<<<<<< HEAD
   <div className="w-full max-w-full min-w-0 mx-auto p-6 sm:p-10 rounded-lg border border-brand/40 bg-card text-center box-border" data-testid="contact-success" role="status">
     <CheckCircle2 className="w-14 h-14 text-brand-2 mx-auto mb-4" />
     <h2 className="font-display font-extrabold text-2xl sm:text-3xl">{result.duplicate ? "We already have this inquiry." : "Inquiry received."}</h2>
-=======
-  <div className="p-10 rounded-lg border border-brand/40 bg-card text-center" data-testid="contact-success" role="status">
-    <CheckCircle2 className="w-14 h-14 text-brand-2 mx-auto mb-4" />
-    <h2 className="font-display font-extrabold text-3xl">{result.duplicate ? "We already have this inquiry." : "Inquiry received."}</h2>
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
     <p className="text-muted-foreground mt-3">Your inquiry has been safely stored (ref. {result.id.slice(0, 8)}). Our team aims to respond within 1–2 business days.</p>
     {result.acknowledgement_email === "event_accepted" ? (
       <p className="mt-3 text-sm text-brand-2" data-testid="contact-email-requested">A confirmation email has been requested and should reach your inbox shortly. Please check your spam folder if you don't see it.</p>
@@ -78,7 +72,6 @@ const Contact = () => {
   };
 
   return (
-<<<<<<< HEAD
     <div data-testid="contact-page" className="w-full overflow-x-hidden">
       <Seo title="Contact Nexcare — Request a Healthcare Consultation" path="/contact" jsonLd={breadcrumbLd(crumbs)}
         description="Contact Nexcare for hospital planning, NABH preparation, MRD services, equipment planning or hospital website development. Email info@nexcareconsulting.com or call +91 9664662760." />
@@ -110,39 +103,6 @@ const Contact = () => {
           {result ? <Success result={result} onReset={() => setResult(null)} /> : (
             <form onSubmit={submit} noValidate className="w-full max-w-full min-w-0 mx-auto p-5 sm:p-8 rounded-lg border border-border bg-card space-y-5 box-border overflow-hidden" data-testid="contact-form">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 min-w-0">
-=======
-    <div data-testid="contact-page">
-      <Seo title="Contact Nexcare — Request a Healthcare Consultation" path="/contact" jsonLd={breadcrumbLd(crumbs)}
-        description="Contact Nexcare for hospital planning, NABH preparation, MRD services, equipment planning or hospital website development. Email info@nexcareconsulting.com or call +91 9664662760." />
-      <section className="relative py-24 border-b border-border overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="glow-blob bg-brand w-[480px] h-[480px] -top-32 left-1/4 opacity-30 animate-pulse-glow" />
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-          <Breadcrumbs items={crumbs} />
-          <p className="text-xs uppercase tracking-[0.2em] text-brand-2 font-bold mt-8">Contact</p>
-          <h1 className="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl mt-4 max-w-4xl leading-[1.02]">Tell us about your <span className="text-brand">project.</span></h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground leading-7">Share your brief — feasibility, design, accreditation or operations. Our team aims to respond within 1–2 business days.</p>
-        </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-6 lg:px-10 py-20 grid lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-5 space-y-6">
-          <a href="mailto:info@nexcareconsulting.com" data-testid="contact-email-card" className="nx-cta block p-6">
-            <Mail className="w-6 h-6 text-brand mb-3" /><p className="font-display font-bold">Email</p><p className="text-muted-foreground text-sm mt-1">info@nexcareconsulting.com</p>
-          </a>
-          <a href="tel:+919664662760" data-testid="contact-phone-card" className="nx-cta block p-6">
-            <Phone className="w-6 h-6 text-brand mb-3" /><p className="font-display font-bold">Phone</p><p className="text-muted-foreground text-sm mt-1">+91 9664662760</p>
-          </a>
-          <a href={brochureURL} download={BROCHURE_FILENAME} onClick={trackBrochure} data-testid="contact-brochure" className="flex items-center gap-2 px-5 py-4 border-2 border-brand text-brand rounded-md font-semibold hover:bg-brand hover:text-white transition-colors w-fit">
-            <Download className="w-4 h-4" /> Download Brochure
-          </a>
-        </div>
-
-        <div className="lg:col-span-7">
-          {result ? <Success result={result} onReset={() => setResult(null)} /> : (
-            <form onSubmit={submit} noValidate className="p-6 sm:p-8 rounded-lg border border-border bg-card space-y-5" data-testid="contact-form">
-              <div className="grid sm:grid-cols-2 gap-5">
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
                 <FormField id="cf-name" label="Full name" error={errors.name} data-testid="cf-name" autoComplete="name" placeholder="John Doe" maxLength={80} value={form.name} onChange={set("name")} onBlur={blur("name")} />
                 <FormField id="cf-email" label="Email address" type="email" error={errors.email} data-testid="cf-email" autoComplete="email" placeholder="john.doe@example.com" maxLength={254} value={form.email} onChange={set("email")} onBlur={blur("email")} />
                 <FormField id="cf-phone" label="Phone number" type="tel" inputMode="numeric" error={errors.phone} data-testid="cf-phone" autoComplete="tel-national" placeholder="10-digit mobile no." value={form.phone} onChange={set("phone")} onBlur={blur("phone")} />
@@ -155,11 +115,7 @@ const Contact = () => {
               <div className="hidden" aria-hidden><label htmlFor="cf-website">Website</label><input id="cf-website" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} /></div>
               <Recaptcha ref={capRef} error={errors.captcha || errors.captcha_token} onChange={(ok) => ok && setErrors((er) => ({ ...er, captcha: "" }))} />
               {formError && <p role="alert" className="text-sm text-destructive" data-testid="cf-form-error">{formError}</p>}
-<<<<<<< HEAD
               <button type="submit" data-testid="cf-submit" disabled={loading} className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 bg-brand text-white rounded-md font-semibold hover:translate-y-[-2px] transition-transform disabled:opacity-60 disabled:cursor-not-allowed">
-=======
-              <button type="submit" data-testid="cf-submit" disabled={loading} className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand text-white rounded-md font-semibold hover:translate-y-[-2px] transition-transform disabled:opacity-60 disabled:cursor-not-allowed">
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
                 {loading ? "Sending…" : <>Send Message <Send className="w-4 h-4" /></>}
               </button>
             </form>

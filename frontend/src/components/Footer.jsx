@@ -3,17 +3,11 @@ import { Instagram, Linkedin, Facebook, Mail, Phone, Download } from "lucide-rea
 import { LogoMark } from "./LogoMark";
 import { brochureURL, BROCHURE_FILENAME, trackBrochure } from "../lib/api";
 import { OPEN_PREFS_EVENT } from "../lib/consent";
-<<<<<<< HEAD
 import { DiwaliFooterDiyas } from "./festivals/DiwaliLights";
 
 const Footer = () => (
   <footer className="relative mt-24 border-t border-border bg-card" data-testid="footer">
     <DiwaliFooterDiyas />
-=======
-
-const Footer = () => (
-  <footer className="relative mt-24 border-t border-border bg-card" data-testid="footer">
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
     <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
       <div>
         <div className="flex items-center gap-2 mb-3">

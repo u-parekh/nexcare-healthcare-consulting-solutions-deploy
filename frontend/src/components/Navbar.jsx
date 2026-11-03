@@ -4,10 +4,7 @@ import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { LogoMark } from "./LogoMark";
 import { SERVICES as SERVICE_DATA } from "../data/services";
-<<<<<<< HEAD
 import { DiwaliHeaderLights } from "./festivals/DiwaliLights";
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
 
 const SERVICES = SERVICE_DATA.map((s) => ({ slug: s.slug, label: s.title }));
 
@@ -135,10 +132,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-<<<<<<< HEAD
       <DiwaliHeaderLights />
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
     </header>
   );
 };

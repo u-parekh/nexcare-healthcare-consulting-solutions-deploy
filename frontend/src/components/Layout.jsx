@@ -5,10 +5,7 @@ import Footer from "./Footer";
 import Chatbot from "./Chatbot";
 import CookieBanner from "./CookieBanner";
 import BackToTop from "./BackToTop";
-<<<<<<< HEAD
 import DiwaliEffects from "./festivals/DiwaliEffects";
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
 import { useVisitTracking } from "../lib/tracking";
 
 const Layout = () => {
@@ -26,10 +23,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand focus:text-white focus:rounded-md">Skip to content</a>
-<<<<<<< HEAD
       <DiwaliEffects />
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
       <Navbar />
       <main id="main" className="flex-1">
         <Outlet />

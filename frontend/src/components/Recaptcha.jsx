@@ -79,21 +79,12 @@ export const Recaptcha = forwardRef(({ error, onChange }, ref) => {
   const message = error || loadError || (expired ? "Verification expired. Please tick the checkbox again." : "");
 
   return (
-<<<<<<< HEAD
     <div data-testid="captcha" className="w-full min-w-0 text-xs text-muted-foreground leading-5">
       <p className="font-semibold uppercase tracking-wider mb-2">Human verification</p>
       <div ref={wrap} className="w-full max-w-[304px] overflow-hidden mx-auto sm:mx-0" style={{ height: WIDGET_HEIGHT * scale }}>
         <div key={theme} ref={host} data-testid="captcha-widget" style={{ width: WIDGET_WIDTH, transform: `scale(${scale})`, transformOrigin: "0 0" }} />
       </div>
       {message && <p role="alert" className="mt-1 text-destructive break-words" data-testid="captcha-error">{message}</p>}
-=======
-    <div data-testid="captcha" className="text-xs text-muted-foreground leading-5">
-      <p className="font-semibold uppercase tracking-wider mb-2">Human verification</p>
-      <div ref={wrap} className="w-full max-w-[304px]" style={{ height: WIDGET_HEIGHT * scale }}>
-        <div key={theme} ref={host} data-testid="captcha-widget" style={{ width: WIDGET_WIDTH, transform: `scale(${scale})`, transformOrigin: "0 0" }} />
-      </div>
-      {message && <p role="alert" className="mt-1 text-destructive" data-testid="captcha-error">{message}</p>}
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
     </div>
   );
 });

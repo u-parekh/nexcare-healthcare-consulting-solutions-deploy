@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, ChevronRight, ChevronDown } from "lucide-react";
 import HeroParticles from "../components/HeroParticles";
-<<<<<<< HEAD
 import { DiwaliHeroSparkles } from "../components/festivals/DiwaliLights";
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
 import AutoCarousel from "../components/AutoCarousel";
 import HeroCenterpiece from "../components/home/HeroCenterpiece";
 import HowWeWork from "../components/home/HowWeWork";
@@ -36,10 +33,7 @@ const Hero = () => (
   <section className="relative min-h-[90vh] flex items-center overflow-hidden" data-testid="hero">
     <div className="absolute inset-0 grid-pattern opacity-40 dark:opacity-20" />
     <HeroParticles />
-<<<<<<< HEAD
     <DiwaliHeroSparkles />
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(74,144,226,0.28),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(63,181,73,0.28),transparent_38%)]" />
     <div className="glow-blob bg-brand w-[420px] h-[420px] -top-24 -left-24 opacity-40 hero-pulse" />
     <div className="glow-blob bg-brand-2 w-[380px] h-[380px] bottom-0 right-0 opacity-35 hero-pulse [animation-delay:2s]" />
