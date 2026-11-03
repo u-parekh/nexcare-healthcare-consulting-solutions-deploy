@@ -179,6 +179,7 @@ html, body { overflow-x: hidden; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .reveal-stagger > * { opacity: 1; transform: none; }
 }
+<<<<<<< HEAD
 
 
 /* Mobile & Tablet Contact Section Responsive Centering Fix */
@@ -198,3 +199,5 @@ html, body { overflow-x: hidden; }
     margin-right: auto;
   }
 }
+=======
+>>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
