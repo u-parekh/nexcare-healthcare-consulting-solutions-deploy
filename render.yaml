@@ -1,0 +1,27 @@
+# Render Blueprint (optional): New + > Blueprint, pick this repo. Secrets marked sync:false are entered in the dashboard.
+services:
+  - type: web
+    name: nexcare-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - { key: PYTHON_VERSION, value: 3.11.9 }
+      - { key: ADMIN_COOKIE_SAMESITE, value: strict }
+      - { key: GEO_LOOKUP_ENABLED, value: "false" }
+      - { key: MONGO_URL, sync: false }
+      - { key: DB_NAME, sync: false }
+      - { key: CORS_ORIGINS, sync: false }
+      - { key: APP_BASE_URL, sync: false }
+      - { key: JWT_SECRET, generateValue: true }
+      - { key: IP_HASH_SALT, generateValue: true }
+      - { key: ADMIN_USERNAME, sync: false }
+      - { key: ADMIN_PASSWORD_HASH, sync: false }
+      - { key: RESEND_API_KEY, sync: false }
+      - { key: RESEND_FROM_EMAIL, sync: false }
+      - { key: CONTACT_NOTIFICATION_EMAIL, sync: false }
+      - { key: RECAPTCHA_SECRET_KEY, sync: false }
+      - { key: RECAPTCHA_ALLOWED_HOSTNAMES, sync: false }
