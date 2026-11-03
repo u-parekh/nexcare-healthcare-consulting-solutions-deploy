@@ -179,8 +179,10 @@ html, body { overflow-x: hidden; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .reveal-stagger > * { opacity: 1; transform: none; }
 }
-<<<<<<< HEAD
-
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .reveal-stagger > * { opacity: 1; transform: none; }
+}
 
 /* Mobile & Tablet Contact Section Responsive Centering Fix */
 @media (max-width: 1023px) {
@@ -199,5 +201,3 @@ html, body { overflow-x: hidden; }
     margin-right: auto;
   }
 }
-=======
->>>>>>> 0132e632f4d84b27adc83a6cd775e0705420d3a7
