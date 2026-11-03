@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800;900&family=DM+Sans:wght@400;500;700&display=swap');
 
@@ -68,10 +70,9 @@
     --ring: var(--brand);
   }
 
-  * { border-color: hsl(var(--border)); }
+  * { @apply border-border; }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    @apply bg-background text-foreground;
     font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
